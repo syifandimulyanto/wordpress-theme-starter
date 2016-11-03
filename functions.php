@@ -1,7 +1,7 @@
 <?php
 /*
- *  Author: Todd Motto | @toddmotto
- *  URL: html5blank.com | @html5blank
+ *  Author: Syifandi Mulyanto 
+ *  URL: syifandimulyanto.id
  *  Custom functions, support, custom post types and more.
  */
 
@@ -14,6 +14,11 @@
 /*------------------------------------*\
 	Theme Support
 \*------------------------------------*/
+
+require_once(TEMPLATEPATH . "/functions/theme-support.php"); // Load theme support
+require_once(TEMPLATEPATH . "/functions/theme-functions.php"); // Load custom functions
+require_once(TEMPLATEPATH . "/functions/theme-styles.php"); // Load JavaScript, CSS & comment list layout
+
 
 if (!isset($content_width))
 {
