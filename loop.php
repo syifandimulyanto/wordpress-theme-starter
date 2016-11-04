@@ -261,7 +261,7 @@
     														}
     							$terms_slug_str = join( " ", $tslugs_arr);
 								endif;
-								echo $terms_slug_str;
+								echo ucwords(str_replace("-", " ", $terms_slug_str)); 
 						?>
 							</span>
 							<?php ?>
@@ -450,7 +450,19 @@
 							</div>
 							<div class="info">
 								<h4 class="name"><?php the_title(); ?></h4>
-								<span class="regency"><?php the_category(); ?></span>
+								<span class="regency">
+									<?php 
+											$terms = get_the_terms($post->ID, 'happyclient_category' );
+											if ($terms && ! is_wp_error($terms)) :
+			    							$tslugs_arr = array();		
+			    							foreach ($terms as $term) {
+			        														$tslugs_arr[] = $term->slug;
+			    														}
+			    							$terms_slug_str = join( " ", $tslugs_arr);
+											endif;
+										 	echo ucwords(str_replace("-", " ", $terms_slug_str)); 
+									?>
+								</span>
 								<p class="desc">
 									<?php the_excerpt(); ?>
 								</p>
