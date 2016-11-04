@@ -1,19 +1,38 @@
-<?php get_header(); ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<?php get_header(); 
+
+	?>
 
 	<main role="main">
-		<!-- section -->
-		<section>
-
-			<h1><?php _e( 'Latest Posts', 'html5blank' ); ?></h1>
-
 			<?php get_template_part('loop'); ?>
-
-			<?php get_template_part('pagination'); ?>
-
-		</section>
-		<!-- /section -->
 	</main>
 
-<?php get_sidebar(); ?>
 
 <?php get_footer(); ?>
+</body>
+</html>
+<script type="text/javascript">
+		$('.count').each(function () {
+		    $(this).prop('Counter',0).animate({
+		        Counter: $(this).text()
+		    }, {
+		        duration: 10000,
+		        easing: 'swing',
+		        step: function (now) {
+		            $(this).text(Math.ceil(now));
+		        }
+		    });
+		});
+	</script>
+	<script src="<?php echo bloginfo('template_url');?>/js/lib/wow.min.js"></script>
+    <script>
+      new WOW().init();
+    </script>
+
+
+
