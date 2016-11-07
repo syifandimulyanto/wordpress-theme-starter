@@ -12,7 +12,6 @@
 			<?php get_template_part('loop'); ?>
 	</main>
 
-
 <?php get_footer(); ?>
 </body>
 </html>

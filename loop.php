@@ -177,39 +177,27 @@
     	<div class="container">
     		<div class="testimonialSlider">
 				<ul>
+					<?php 
+						$args = array( 'post_type' => 'testimonial', 'posts_per_page' => 3 );
+						$loop = new WP_Query( $args );
+						$no=0;
+						while ( $loop->have_posts() ) : $loop->the_post();
+					?>
 					<li>
 						<div layout="row">
 							<div class="symbol fsr">
-								<i class="mdi mdi-comment-multiple-outline icon"></i>
+								<i class="mdi  <?php if($no == 0) echo 'mdi-comment-multiple-outline';elseif($no == 1) echo 'mdi-wechat';elseif($no == 2) echo 'mdi-message-text-outline'; ?> icon"></i>
 							</div>
 							<div>
-								<p class="quote">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."</p>
-								<span class="name">Jon Doe</span>
+								<p class="quote">"<?php the_excerpt(); ?>"</p>
+								<span class="name"><?php the_title(); ?></span>
 							</div>
 						</div>
 					</li>
-					<li>
-						<div layout="row">
-							<div class="symbol fsr">
-								<i class="mdi mdi-wechat icon"></i>	
-							</div>
-							<div>
-								<p class="quote">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."</p>
-								<span class="name">Jon Doe</span>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div layout="row">
-							<div class="symbol fsr">
-								<i class="mdi mdi-message-text-outline icon"></i>
-							</div>
-							<div>
-								<p class="quote">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."</p>
-								<span class="name">Jon Doe</span>
-							</div>
-						</div>
-					</li>
+					<?php 
+						$no++;
+						endwhile;
+					?>
 				</ul>
 			</div>
     	</div>
@@ -295,13 +283,30 @@
     	</div>
     </section><!--/#brand-->
 
+	<?php 
+
+		$query = new WP_Query(array('post_type' => 'work'));
+		$posts = $query->get_posts();
+		$no = 1;
+		$data = array();
+		foreach($posts as $post) {
+		    // Do your stuff, e.g.
+		    $data[$no]['title'] = $post->post_title;
+		    $data[$no]['img'] = get_the_post_thumbnail($post->ID);
+		    $data[$no]['desc'] = $post->post_content;
+		    $data[$no]['link'] = get_the_permalink($post->ID);
+
+		 $no++;
+		}
+
+	?>
 	<!-- Portfolio -->
     <div id="work">
 		<section id="portfolio">
 			<div class="container">
 				<h2 class="sectionHeading wow flash" data-wow-iteration="10">
 					<span class="subHeading">What we do</span>
-					some of our work
+					some of our work 
 				</h2>
 				<p class="sectionDesc">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
@@ -310,85 +315,85 @@
 			<div class="sectionContent">
 				<ul class="portfolioItems wow tada">
 					<li class="item">
-						<a class="prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="images/our-work/img-1.jpg">
-							<img src="<?php echo bloginfo('template_url');?>/images/our-work/img-1.jpg" />
+						<a class="prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="<?php echo bloginfo('template_url');?>/images/our-work/img-1.jpg">
+							<?php echo $data[2]["img"]; ?>
 							<div class="overlay">
 								<div class="content">
 									<i class="mdi mdi-crown icon"></i>
-									<h4 class="title">creatively designed</h4>
-									<span class="desc">Lorem ipsum dolor sit</span>
+									<h4 class="title"><?php echo $data[2]["title"]; ?>AA</h4>
+									<span class="desc"><?php echo $data[2]["desc"]; ?></span>
 								</div>
 							</div>
 						</a>
 					</li>
 					<li class="item">
 						<a class="prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="<?php echo bloginfo('template_url');?>/images/our-work/img-2.jpg">
-							<img src="<?php echo bloginfo('template_url');?>/images/our-work/img-2.jpg" />
+							<?php echo $data[3]["img"]; ?>
 							<div class="overlay">
 								<div class="content">
 									<i class="mdi mdi-cube-outline icon"></i>
-									<h4 class="title">creatively designed</h4>
-									<span class="desc">Lorem ipsum dolor sit</span>
+									<h4 class="title"><?php echo $data[3]["title"]; ?></h4>
+									<span class="desc"><?php echo $data[3]["desc"]; ?></span>
 								</div>
 							</div>
 						</a>
 					</li>
 					<li class="item">
 						<a class="prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="<?php echo bloginfo('template_url');?>/images/our-work/img-3.jpg">
-							<img src="<?php echo bloginfo('template_url');?>/images/our-work/img-3.jpg" />
+							<?php echo $data[5]["img"]; ?>
 							<div class="overlay">
 								<div class="content">
 									<i class="mdi mdi-desktop-mac icon"></i>
-									<h4 class="title">creatively designed</h4>
-									<span class="desc">Lorem ipsum dolor sit</span>
+									<h4 class="title"><?php echo $data[5]["title"]; ?></h4>
+									<span class="desc"><?php echo $data[5]["desc"]; ?>t</span>
 								</div>
 							</div>
 						</a>
 					</li>
 					<li class="item">
 						<a class="prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="<?php echo bloginfo('template_url');?>/images/our-work/img-4.jpg">
-							<img src="<?php echo bloginfo('template_url');?>/images/our-work/img-4.jpg" />
+							<?php echo $data[6]["img"]; ?>
 							<div class="overlay">
 								<div class="content">
 									<i class="mdi mdi-flower icon"></i>
-									<h4 class="title">creatively designed</h4>
-									<span class="desc">Lorem ipsum dolor sit</span>
+									<h4 class="title"><?php echo $data[6]["title"]; ?></h4>
+									<span class="desc"><?php echo $data[6]["desc"]; ?></span>
 								</div>
 							</div>
 						</a>
 					</li>
 					<li class="item">
 						<a class="prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="<?php echo bloginfo('template_url');?>/images/our-work/img-5.jpg">
-							<img src="<?php echo bloginfo('template_url');?>/images/our-work/img-5.jpg" />
+							<?php echo $data[1]["img"]; ?>
 							<div class="overlay">
 								<div class="content">
 									<i class="mdi mdi-gamepad-variant icon"></i>
-									<h4 class="title">creatively designed</h4>
-									<span class="desc">Lorem ipsum dolor sit</span>
+									<h4 class="title"><?php echo $data[1]["title"]; ?></h4>
+									<span class="desc"><?php echo $data[1]["desc"]; ?></span>
 								</div>
 							</div>
 						</a>
 					</li>
 					<li class="item">
-						<a class="prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="images/our-work/img-6.jpg">
-							<img src="<?php echo bloginfo('template_url');?>/images/our-work/img-6.jpg" />
+						<a class="prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="<?php echo bloginfo('template_url');?>/images/our-work/img-6.jpg">
+							<?php echo $data[4]["img"]; ?>
 							<div class="overlay">
 								<div class="content">
 									<i class="mdi mdi-gnome icon"></i>
-									<h4 class="title">creatively designed</h4>
-									<span class="desc">Lorem ipsum dolor sit</span>
+									<h4 class="title"><?php echo $data[4]["title"]; ?></h4>
+									<span class="desc"><?php echo $data[4]["desc"]; ?></span>
 								</div>
 							</div>
 						</a>
 					</li>
 					<li class="item">
-						<a class="prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="images/our-work/img-7.jpg">
-							<img src="<?php echo bloginfo('template_url');?>/images/our-work/img-7.jpg" />
+						<a class="prettyPhoto" rel="prettyPhoto[gallery1]" title="Development Mobile" href="<?php echo bloginfo('template_url');?>/images/our-work/img-7.jpg">
+							<?php echo $data[7]["img"]; ?>
 							<div class="overlay">
 								<div class="content">
 									<i class="mdi mdi-guitar-electric icon"></i>
-									<h4 class="title">creatively designed</h4>
-									<span class="desc">Lorem ipsum dolor sit</span>
+									<h4 class="title"><?php echo $data[7]["title"]; ?></h4>
+									<span class="desc"><?php echo $data[7]["desc"]; ?></span>
 								</div>
 							</div>
 						</a>

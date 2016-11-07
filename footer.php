@@ -23,14 +23,9 @@
 				        					<a href="" class="icon"><i class="mdi mdi-tumblr"></i></a>
 				        				</div>
 				        			</div>
-				        			<form action="" class="subscribeForm">
-				        				<div class="input-group input-group-lg">
-											<input type="email" class="form-control" placeholder="Your Email" required>
-											<span class="input-group-btn">
-												<button class="btn btn-success" type="submit">Subscribe</button>
-											</span>
-										</div>
-				        			</form>
+				        			
+										<?php es_subbox( $namefield = "NO", $desc = "", $group = "" ); ?>
+									
 			        			</div>
 			        		</div>
 			        		<div class="col-md-4 col-sm-6">
@@ -54,20 +49,6 @@
 										$no++;
 										endwhile;
 									?>
-				        			<!-- 	<li layout="row" class="verticalCenter">
-				        					<a class="articleThumb fsr" href="#"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/our-blog/img-5.jpg" alt=""></a>
-				        					<div class="info">
-				        						<h3 class="articleTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing</a></h3>
-				        						<div class="date">Jan 9, 2016</div>
-				        					</div>
-				        				</li>
-				        				<li layout="row" class="verticalCenter">
-				        					<a class="articleThumb fsr" href="#"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/our-blog/img-6.jpg" alt=""></a>
-				        					<div class="info">
-				        						<h3 class="articleTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing</a></h3>
-				        						<div class="date">Jan 9, 2016</div>
-				        					</div>
-				        				</li> -->
 				        			</ul>
 			        			</div>
 			        		</div>
