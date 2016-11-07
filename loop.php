@@ -17,7 +17,7 @@
 					?>
 						<div class="col-md-4 col-sm-4 wow <?php if($no == 0) echo 'slideInLeft';elseif($no == 1) echo 'bounceInUp';elseif($no == 2) echo 'slideInRight'; ?>">
 							<div class="item">
-								<a class="overlay" href="#">
+								<a class="overlay" href="<?php the_permalink(); ?>">
 									<span class="content">
 										<i class="mdi <?php if($no == 0) echo 'mdi-account-multiple';elseif($no == 1) echo 'mdi-image-filter-center-focus-weak';elseif($no == 2) echo 'mdi mdi-airplay icon'; ?> icon"></i>
 										<?php the_title(); ?>

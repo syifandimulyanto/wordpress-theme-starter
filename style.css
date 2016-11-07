@@ -305,3 +305,7 @@ a img.aligncenter {
 		page-break-after:avoid;
 	}
 }
+
+.post{
+	padding: 55px;
+}
